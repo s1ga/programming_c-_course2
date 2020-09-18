@@ -24,15 +24,25 @@ void House::getFlat(int rooms)
 	if (this->roomCount == rooms)
 	{
 		this->show();
-	} 
+	}
 }
 
 void House::getFlat(int rooms, int floor1, int floor2)
 {
-	if (this->roomCount == rooms && this->floor >= floor1 && this->floor <= floor2)
+	if (floor1 <= floor2)
 	{
-		this->show();
+		if (this->roomCount == rooms && this->floor >= floor1 && this->floor <= floor2)
+		{
+			this->show();
+		}
 	}
+	else {
+		if (this->roomCount == rooms && this->floor >= floor2 && this->floor <= floor1)
+		{
+			this->show();
+		}
+	}
+	
 }
 
 void House::getFlat(float area)
@@ -49,5 +59,5 @@ void House::show()
 	printf("Address: %s\n", this->address);
 	printf("Floor: %d\n", this->floor);
 	printf("Count of rooms: %d\n", this->roomCount);
-	printf("Area: %f\n\n", this->flatArea);
+	printf("Area: %.2f\n\n", this->flatArea);
 }

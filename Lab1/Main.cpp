@@ -19,7 +19,7 @@ int main()
 		switch (flag)
 		{
 		case 1:
-			int housesCount;
+			static int housesCount;
 			printf("Input amount of houses: ");
 			scanf_s("%d", &housesCount);
 			for (int i = 0; i < housesCount; i++) {
@@ -75,4 +75,3 @@ int main()
 
 	return 0;
 }
-
