@@ -1,6 +1,5 @@
 #include"House.h"
 #include<stdio.h>
-#include<conio.h>
 
 int main()
 {
@@ -20,7 +19,7 @@ int main()
 		switch (flag)
 		{
 		case 1:
-			static int housesCount;
+			int housesCount;
 			printf("Input amount of houses: ");
 			scanf_s("%d", &housesCount);
 			for (int i = 0; i < housesCount; i++) {
@@ -77,9 +76,3 @@ int main()
 	return 0;
 }
 
-
-/*
-	1. Замена cin на scanf
-	2. Реализация 3-х методов
-	3. Реализация меню
-*/

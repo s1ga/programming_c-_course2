@@ -1,6 +1,8 @@
+#include<cstring>
 class House 
 {
 private:
+	int flatNum; //номер квартиры
 	char address[50]; //адрес квартиры
 	int floor; //этаж квартиры
 	int roomCount; //кол-во комнат

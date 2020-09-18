@@ -1,23 +1,22 @@
 #include"House.h"
 #include<stdio.h>
-#include<conio.h>
 #include<iostream>
 
-int House::count = 0;
+int House::count = 1;
 
-House::House()
+House::House() : flatNum(this->count)
 {
-	printf("House %d:\n", count + 1);
+	printf("House %d:\n", this->count++);
 	printf("Input address: ");
 	std::cin >> this->address;
+	//scanf_s("%c", &this->address);
 	printf("Input floor: ");
-	std::cin >> this->floor;
+	scanf_s("%d", &this->floor);
 	printf("Input area of flat: ");
-	std::cin >> this->flatArea;
+	scanf_s("%f", &this->flatArea);
 	printf("Input count of rooms: ");
-	std::cin >> this->roomCount;
+	scanf_s("%d", &this->roomCount);
 	printf("\n");
-	count++;
 }
 
 void House::getFlat(int rooms)
@@ -46,10 +45,9 @@ void House::getFlat(float area)
 
 void House::show()
 {
-	//printf("Flat: %d\n", this->count);
+	printf("Flat: %d\n", this->flatNum);
 	printf("Address: %s\n", this->address);
 	printf("Floor: %d\n", this->floor);
 	printf("Count of rooms: %d\n", this->roomCount);
 	printf("Area: %f\n\n", this->flatArea);
-	
 }
