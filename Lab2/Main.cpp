@@ -8,9 +8,8 @@ int main()
 	a.setMatrix(n);
 	b.setMatrix(n);
 
-	a = b;
 
-	(a).show();
+	(a*b*a).show();
 
 	return 0;
 }

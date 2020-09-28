@@ -11,6 +11,7 @@ public:
 	void show();
 	int setDimension();
 	void setMatrix(int n);
+	//Matrix getSquared(Matrix);
 	friend Matrix operator+(Matrix a, Matrix b);
 	friend Matrix operator-(Matrix a, Matrix b);
 	friend Matrix operator*(Matrix a, Matrix b);
@@ -19,7 +20,6 @@ public:
 
 /*
 	1. Подумать над реализацией конструкторов
-	2. Реализация умножения
 	3. вычисления нормы матрицы
 	4. Создать массив объектов класса Matrix и передать его в функцию, которая изменяет i-ю матрицу путем возведения ее в квадрат.
 */

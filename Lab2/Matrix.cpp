@@ -119,7 +119,10 @@ Matrix operator*(Matrix a, Matrix b)
 	Matrix c(n);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			c.matrix[i][j] = a.matrix[i][j] * b.matrix[j][i];
+			c.matrix[i][j] = 0;
+			for (int k = 0; k < n; k++) {
+				c.matrix[i][j] += a.matrix[j][k] * b.matrix[k][j];
+			}
 		}
 	}
 
