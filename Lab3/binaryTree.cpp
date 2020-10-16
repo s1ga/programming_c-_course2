@@ -34,6 +34,7 @@ void Tree::insert(int value, Node* leaf)
 		}
 	}
 }
+//recursivly deletion for destructor
 void Tree::delTree(Node* leaf)
 {
 	if (leaf->left != NULL) {
@@ -45,6 +46,7 @@ void Tree::delTree(Node* leaf)
 
 	delete leaf;
 }
+//set value for pushing in the tree
 int Tree::setValue()
 {
 	int value;
