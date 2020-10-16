@@ -33,7 +33,6 @@ void Tree::insert(int value, Node* leaf)
 			leaf->left = newLeafInsert(value, leaf->left);
 		}
 	}
-	// think about value == leaf.value
 }
 void Tree::delTree(Node* leaf)
 {
@@ -89,6 +88,7 @@ Node* Tree::copyTree(Node* oldRoot, Node* newRoot)
 	return newRoot;
 }
 
+//public pushing func
 void Tree::insert(int value)
 {
 	// if root is not empty, insert value
@@ -104,10 +104,12 @@ void Tree::insert(int value)
 // counting leaves
 unsigned int Tree::leavesCount(Node* root)
 {
+	//if root is empty return 0
 	if (root == NULL) {
 		return 0;
 	}
 
+	//recursivlty obtain count of leaves
 	if (root->left == NULL && root->right == NULL) {
 		return 1;
 	}
