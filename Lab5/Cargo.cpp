@@ -1,4 +1,5 @@
 #include<cstdio>
+#include<iomanip>
 #include<cmath>
 #include"Cargo.h"
 
@@ -10,15 +11,15 @@ Plane::Plane() : minWeight(10000), minDistance(1000)
 };
 
 //cheking cargo and route conditions for Plane
-bool Plane::checkConditions(double weight = 0, double distance = 0) 
+bool Plane::checkConditions() 
 {
 	bool flag = false;
 
-	if (weight && distance) {
-		if (weight < this->minWeight) {
+	if (this->weight && this->distance) {
+		if (this->weight < this->minWeight) {
 			printf("Your weight doesn't satisfy. Min weight is %.0fkg. You can choose another transport\n", this->minWeight);
 		}
-		else if (distance < this->minDistance) {
+		else if (this->distance < this->minDistance) {
 			printf("Your distance doesn't satisfy. Min distance is %.0fkm. You can choose another transport\n", this->minDistance);
 		}
 		else {
@@ -41,12 +42,12 @@ Train::Train() : minDistance(250)
 }
 
 //cheking cargo and route conditions for Train
-bool Train::checkConditions(double weight = 0, double distance = 0) 
+bool Train::checkConditions() 
 {
 	bool flag = false;
 
-	if (distance) {
-		if (distance >= this->minDistance) {
+	if (this->distance) {
+		if (this->distance >= this->minDistance) {
 			printf("All conditions are followed\n");
 			flag = true;
 		}
@@ -69,12 +70,12 @@ Car::Car() : maxWeight(15000)
 }
 
 //cheking cargo and route conditions for Car
-bool Car::checkConditions(double weight = 0, double distance = 0) 
+bool Car::checkConditions() 
 {
 	bool flag = false;
 
-	if (weight) {
-		if (weight <= this->maxWeight) {
+	if (this->weight) {
+		if (this->weight <= this->maxWeight) {
 			printf("All conditions are followed\n");
 			flag = true;
 		}
@@ -91,25 +92,23 @@ bool Car::checkConditions(double weight = 0, double distance = 0)
 
 // set distance of route
 double Cargo::setDistance() {
-	double distance;
 	printf("Input distance of your route in km: ");
-	scanf_s("%lf", &distance);
-	return doubToOut(distance);
+	scanf_s("%lf", &this->distance); 
+	return doubToOut(this->distance);
 }
 
 //get speed of transport
 double Cargo::setWeight() {
-	double weight;
 	printf("Input weight of your cargo in kg: ");
-	scanf_s("%lf", &weight);
-	return doubToOut(weight);
+	scanf_s("%lf", &this->weight);
+	return doubToOut(this->weight);
 }
 
-bool Cargo::checkConditions(double weight = 0, double distance = 0) 
+bool Cargo::checkConditions() 
 {
 	int flag = false;
 
-	if (!weight && !distance) {
+	if (!this->weight && !this->distance) {
 		printf("Distance and weight are required\n");
 	}
 	else {
@@ -119,21 +118,48 @@ bool Cargo::checkConditions(double weight = 0, double distance = 0)
 	return flag;
 }
 
+// get distance of route
+double Cargo::getDistance() {
+	return this->distance;
+}
+
+// get weight of route
+double Cargo::getWeight() {
+	return this->weight;
+}
+
 // get time of route with 2 signs precision
-double Cargo::getTime(double distance) 
+double Cargo::getTime() 
 {
-	double time = distance / this->speed;
-	return doubToOut(time);
+	this->time = this->distance / this->speed;
+	return doubToOut(this->time);
 }
 
 // get cost of route with 2 signs precision
-double Cargo::getCost(double distance) 
+double Cargo::getCost() 
 {
-	double cost = distance * this->costPerKm;
-	return doubToOut(cost);
+	this->cost= this->distance * this->costPerKm;
+	return doubToOut(this->cost);
 }
 
 double Cargo::doubToOut(double num)
 {
 	return round(num * 100) / 100;
+}
+
+//overload cout 
+std::ostream& operator<< (std::ostream& out, const Cargo* cargo)
+{
+	out << "Route time: " << std::fixed << std::setprecision(2) << cargo->time << " hours" << std::endl
+		<< "Cost: " << cargo->cost << "$" << std::endl;
+
+	return out;
+}
+
+//overload cin
+std::istream& operator>> (std::istream& in, Cargo* cargo)
+{
+	cargo->setDistance();
+	cargo->setWeight();
+	return in;
 }

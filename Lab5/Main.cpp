@@ -1,4 +1,5 @@
 #include<cstdio>
+#include<iostream>
 #include<cstring>
 #include"Cargo.h"
 
@@ -23,30 +24,36 @@ int main()
 		switch (flag)
 		{
 		case 1:
-			weight = plane->setWeight(),
-			distance = plane->setDistance();
+			std::cin >> plane;
+			weight = plane->getWeight(),
+			distance = plane->getDistance();
 
-			if (plane->checkConditions(weight, distance)) {
-				printf("Route time: %.2lf hours\n", plane->getTime(distance));
-				printf("Cost: %.2lf$\n", plane->getCost(distance));
+			if (plane->checkConditions()) {
+				plane->getCost();
+				plane->getTime();
+				std::cout << plane << std::endl;
 			}
 			break;
 		case 2:
-			weight = car->setWeight(),
-			distance = car->setDistance();
+			std::cin >> car;
+			weight = car->getWeight(),
+			distance = car->getDistance();
 
-			if (car->checkConditions(weight, distance)) {
-				printf("Route time: %.2lf hours\n", car->getTime(distance));
-				printf("Cost: %.2lf$\n", car->getCost(distance));
+			if (car->checkConditions()) {
+				car->getTime();
+				car->getCost();
+				std::cout << car << std::endl;
 			}
 			break;
 		case 3:
-			weight = train->setWeight(),
-			distance = train->setDistance();
+			std::cin >> train;
+			weight = train->getWeight(),
+			distance = train->getDistance();
 
-			if (train->checkConditions(weight, distance)) {
-				printf("Route time: %.2lf hours\n", train->getTime(distance));
-				printf("Cost: %.2lf$\n", train->getCost(distance));
+			if (train->checkConditions()) {
+				train->getTime();
+				train->getCost();
+				std::cout << train << std::endl;
 			}
 			break;
 		case 0:
